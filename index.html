@@ -2,72 +2,204 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Verificador Perú</title>
+  <title>🔍 Verificador Perú</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
       margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #020617;
-      padding: 15px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-    }
-    main {
-      padding: 20px;
-      max-width: 500px;
-      margin: auto;
-    }
-    .card {
-      background: #020617;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #000;
-    }
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
-    }
-    input {
-      background: #020617;
+      background: linear-gradient(180deg, #050b1a, #0b1535);
       color: #fff;
-      border: 1px solid #334155;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
     }
+
+    .app {
+      width: 100%;
+      max-width: 420px;
+      background: #0f1b3d;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.5);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px;
+      background: #16255c;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 600;
+      opacity: .7;
+    }
+
+    .tab.active {
+      background: #2563eb;
+      opacity: 1;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: #0b1433;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
     button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
       background: #2563eb;
       color: #fff;
+      font-size: 16px;
+      font-weight: 700;
       cursor: pointer;
     }
-    button:hover {
-      background: #1d4ed8;
-    }
+
     .result {
       margin-top: 15px;
-      background: #020617;
-      padding: 15px;
-      border-radius: 8px;
-      border: 1px solid #334155;
+      background: #0b1433;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
     }
-    footer {
-      text-align: center;
-      font-size: 12px;
-      color: #94a3b8;
+
+    .legal {
       margin-top: 20px;
+      font-size: 12px;
+      opacity: .7;
+      text-align: center;
+    }
+
+    a {
+      color: #60a5fa;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
+  <div class="app">
+    <h1>🔍 Verificador Perú</h1>
+
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('dni')">RENIEC DNI</div>
+      <div class="tab" onclick="showTab('celular')">OSIPTEL Celular</div>
+    </div>
+
+    <!-- RENIEC -->
+    <div id="dni" class="section active">
+      <label>DNI (8 dígitos)</label>
+      <input type="tel" id="dniInput" placeholder="Ej: 12345678" maxlength="8">
+      <button onclick="verificarDNI()">Verificar DNI</button>
+      <div id="dniResult" class="result" style="display:none;"></div>
+      <p class="legal">
+        Fuente oficial: <a href="https://www.reniec.gob.pe" target="_blank">RENIEC</a>
+      </p>
+    </div>
+
+    <!-- OSIPTEL -->
+    <div id="celular" class="section">
+      <label>Número de celular (Perú)</label>
+      <input type="tel" id="celularInput" placeholder="Ej: 987654321" maxlength="9">
+      <button onclick="verificarCelular()">Verificar Celular</button>
+      <div id="celularResult" class="result" style="display:none;"></div>
+      <p class="legal">
+        Fuente oficial: <a href="https://checatuimei.osiptel.gob.pe" target="_blank">OSIPTEL</a>
+      </p>
+    </div>
+
+    <div class="legal">
+      Demo educativo · No consulta bases oficiales · No almacena información personal
+    </div>
+  </div>
+
+  <script>
+    function showTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+
+      if (tab === 'dni') {
+        document.querySelectorAll('.tab')[0].classList.add('active');
+        document.getElementById('dni').classList.add('active');
+      } else {
+        document.querySelectorAll('.tab')[1].classList.add('active');
+        document.getElementById('celular').classList.add('active');
+      }
+    }
+
+    function verificarDNI() {
+      const dni = document.getElementById('dniInput').value;
+      const res = document.getElementById('dniResult');
+
+      if (!/^\d{8}$/.test(dni)) {
+        res.style.display = 'block';
+        res.innerHTML = '❌ DNI inválido. Debe tener 8 dígitos.';
+        return;
+      }
+
+      res.style.display = 'block';
+      res.innerHTML = `✅ Formato de DNI válido.<br>DNI ingresado: <b>${dni}</b><br><small>No se consulta RENIEC real.</small>`;
+    }
+
+    function verificarCelular() {
+      const cel = document.getElementById('celularInput').value;
+      const res = document.getElementById('celularResult');
+
+      if (!/^9\d{8}$/.test(cel)) {
+        res.style.display = 'block';
+        res.innerHTML = '❌ Número inválido. Debe empezar con 9 y tener 9 dígitos.';
+        return;
+      }
+
+      res.style.display = 'block';
+      res.innerHTML = `✅ Número válido en Perú.<br>Celular: <b>${cel}</b><br><small>No se consulta OSIPTEL real.</small>`;
+    }
+  </script>
+
+</body>
+</html>
 <header>🔍 Verificador Perú</header>
 
 <main>

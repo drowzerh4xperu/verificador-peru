@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificador Perú</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #020617;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    main {
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    .card {
+      background: #020617;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    input {
+      background: #020617;
+      color: #fff;
+      border: 1px solid #334155;
+    }
+    button {
+      background: #2563eb;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .result {
+      margin-top: 15px;
+      background: #020617;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>🔍 Verificador Perú</header>
+
+<main>
+  <div class="card">
+    <label>Número de celular (Perú)</label>
+    <input type="tel" id="numero" placeholder="Ej: 987654321" maxlength="9">
+
+    <button onclick="verificar()">Verificar</button>
+
+    <div id="resultado" class="result" style="display:none;"></div>
+  </div>
+
+  <footer>
+    Demo educativo · No consulta bases oficiales
+  </footer>
+</main>
+
+<script>
+  function verificar() {
+    const num = document.getElementById("numero").value;
+    const res = document.getElementById("resultado");
+
+    if (!/^[9][0-9]{8}$/.test(num)) {
+      res.style.display = "block";
+      res.innerHTML = "❌ Número inválido. Debe empezar con 9 y tener 9 dígitos.";
+      return;
+    }
+
+    // Simulación
+    res.style.display = "block";
+    res.innerHTML = `
+      ✅ Número válido<br><br>
+      📱 Operador: Claro (simulado)<br>
+      👤 Titular: No disponible (demo)<br>
+      📍 País: Perú
+    `;
+  }
+</script>
+
+</body>
+</html>

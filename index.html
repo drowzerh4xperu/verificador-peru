@@ -323,25 +323,24 @@ function showDni(){
   celular.style.display="none";
   resultado.innerHTML="";
 }
-
 function verificarCel(){
   const n = phone.value.trim();
   if(!/^9\d{8}$/.test(n)){
-    resultado.innerHTML="❌ Número inválido";
+    resultado.innerHTML = "❌ Número inválido";
     return;
   }
-  resultado.innerHTML=`✅ Número válido<br>📞 +51 ${n}<br>⚠️ No consulta OSIPTEL real`;
+  resultado.innerHTML = "✅ Número válido<br>📱 Perú<br><small>Demo educativo</small>";
 }
 
 function verificarDni(){
   const d = dniInput.value.trim();
   if(!/^\d{8}$/.test(d)){
-    resultado.innerHTML="❌ DNI inválido";
+    resultado.innerHTML = "❌ DNI inválido";
     return;
   }
-  resultado.innerHTML=`✅ DNI válido<br>⚠️ No consulta RENIEC real`;
+  resultado.innerHTML = "✅ DNI válido<br>🪪 RENIEC<br><small>Demo educativo</small>";
 }
 </script>
 
 </body>
-</html>
+</html>      

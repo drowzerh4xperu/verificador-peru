@@ -1,341 +1,182 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>🔍 Verificador Perú</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    /* ====== FIX MOBILE VERTICAL ====== */
-@media (max-width: 768px) {
-  body {
-    justify-content: flex-start;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      background: linear-gradient(180deg, #050b1a, #0b1535);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 20px;
-    }
-
-    .app {
-      width: 100%;
-      max-width: 420px;
-      background: #0f1b3d;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,.5);
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
-
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .tab {
-      flex: 1;
-      padding: 10px;
-      background: #16255c;
-      border-radius: 10px;
-      text-align: center;
-      cursor: pointer;
-      font-weight: 600;
-      opacity: .7;
-    }
-
-    .tab.active {
-      background: #2563eb;
-      opacity: 1;
-    }
-
-    .section {
-      display: none;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      background: #0b1433;
-      color: #fff;
-      margin-bottom: 14px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-<!DOCTYPE html>
-<html lang="es">
-<head>
 <meta charset="UTF-8">
-<title>🔎 Verificador Perú</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificador Perú</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont;
-}
-
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 body{
   margin:0;
-  min-height:100vh;
-  background:linear-gradient(180deg,#050b1a,#0a1a3a);
-  display:flex;
-  justify-content:center;
-  padding:20px;
+  background:linear-gradient(180deg,#050b1f,#020617);
   color:#fff;
+  min-height:100vh;
 }
-
-/* CONTENEDOR */
 .container{
-  width:100%;
   max-width:420px;
-  animation:fadeIn 0.8s ease;
-}
-
-/* CARD */
-.card{
-  background:rgba(255,255,255,0.05);
-  border-radius:18px;
+  margin:auto;
   padding:20px;
-  box-shadow:0 0 40px rgba(0,0,0,.6);
 }
-
-/* TITULO */
 h1{
   text-align:center;
-  margin-bottom:15px;
+  margin-bottom:20px;
 }
-
-/* TABS */
 .tabs{
   display:flex;
   gap:10px;
-  margin-bottom:15px;
 }
-
-.tabs button{
+.tab{
   flex:1;
-  padding:10px;
-  border:none;
+  padding:12px;
   border-radius:10px;
-  background:#1b2c5a;
+  border:none;
+  background:#1e293b;
   color:#fff;
   font-weight:bold;
 }
-
-.tabs button.active{
-  background:#2979ff;
+.tab.active{
+  background:#2563eb;
 }
-
-/* INPUT */
+.card{
+  margin-top:20px;
+  background:#020617;
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 0 20px rgba(0,0,0,.5);
+}
+label{font-size:14px}
 input{
   width:100%;
-  padding:12px;
+  padding:14px;
+  border-radius:12px;
   border:none;
-  border-radius:10px;
-  margin-top:10px;
+  margin-top:6px;
   font-size:16px;
 }
-
-/* BOTONES */
-.btn{
-  width:100%;
+button.action{
   margin-top:15px;
-  padding:12px;
-  background:#2979ff;
+  width:100%;
+  padding:14px;
+  border-radius:14px;
   border:none;
-  border-radius:12px;
-  color:#fff;
   font-size:16px;
   font-weight:bold;
+  background:#22c55e;
 }
-
-/* RESULTADO */
 .result{
   margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  background:rgba(0,0,0,.3);
+  font-size:15px;
 }
-
-/* PAGOS */
-.payments{
+.logos{
   display:flex;
-  gap:10px;
+  justify-content:center;
+  gap:15px;
   margin-top:15px;
 }
-
-.payments img{
-  width:100%;
-  border-radius:12px;
+.logos img{
+  width:120px;
+  opacity:.9;
 }
-
-/* LINKS */
-.link{
-  display:block;
-  margin-top:12px;
-  text-align:center;
-  color:#4fc3f7;
-  text-decoration:none;
-}
-
-/* FOOTER */
 .footer{
-  text-align:center;
+  margin-top:25px;
   font-size:12px;
-  margin-top:15px;
+  text-align:center;
   opacity:.7;
 }
 
-/* WHATSAPP */
+/* WhatsApp flotante */
 .whatsapp{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:#25d366;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  color:#fff;
-  text-decoration:none;
+  width:60px;
 }
-
-/* ANIMACION */
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:none}
+.whatsapp img{
+  width:100%;
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
-  <div class="card">
+<h1>🔍 Verificador Perú</h1>
 
-    <h1>🔎 Verificador Perú</h1>
-
-    <div class="tabs">
-      <button id="tabCel" class="active" onclick="showCel()">OSIPTEL Celular</button>
-      <button id="tabDni" onclick="showDni()">RENIEC DNI</button>
-    </div>
-
-    <!-- CELULAR -->
-    <div id="celular">
-      <label>Número de celular (Perú)</label>
-      <input id="phone" placeholder="Ej: 987654321">
-      <button class="btn" onclick="verificarCel()">Verificar Celular</button>
-    </div>
-
-    <!-- DNI -->
-    <div id="dni" style="display:none">
-      <label>DNI</label>
-      <input id="dniInput" placeholder="Ej: 12345678">
-      <button class="btn" onclick="verificarDni()">Verificar DNI</button>
-    </div>
-
-    <div id="resultado" class="result"></div>
-    
-    <a class="link" href="https://checatuslineas.osiptel.gob.pe/" target="_blank">
-      🔗 Consultar OSIPTEL oficial
-    </a>
-
-    <a class="link" href="https://www.reniec.gob.pe/" target="_blank">
-      🔗 Consultar RENIEC oficial
-    </a>
-
-    <div class="footer">
-      Demo educativo · No consulta bases oficiales · No almacena datos
-    </div>
-
-  </div>
+<div class="tabs">
+  <button id="tabCel" class="tab active" onclick="showCel()">OSIPTEL Celular</button>
+  <button id="tabDni" class="tab" onclick="showDni()">RENIEC DNI</button>
 </div>
 
-<a class="whatsapp"
-href="https://wa.me/51907594198?text=Hola%20quiero%20información%20del%20Verificador%20Perú"
-target="_blank">💬</a>
+<div class="card" id="celular">
+  <label>Número de celular (Perú)</label>
+  <input id="phone" placeholder="Ej: 987654321">
+  <button class="action" onclick="verificarCel()">Verificar Celular</button>
+</div>
+
+<div class="card" id="dni" style="display:none">
+  <label>DNI (8 dígitos)</label>
+  <input id="dniInput" placeholder="Ej: 12345678">
+  <button class="action" onclick="verificarDni()">Verificar DNI</button>
+</div>
+
+<div class="result" id="resultado"></div>
+
+<div class="logos">
+  <img src="assets/osiptel.png">
+  <img src="assets/reniec.png">
+</div>
+
+<div class="footer">
+Demo educativo · No consulta bases oficiales · No almacena datos<br>
+<a href="https://www.osiptel.gob.pe" target="_blank">OSIPTEL oficial</a> |
+<a href="https://www.reniec.gob.pe" target="_blank">RENIEC oficial</a>
+</div>
+</div>
+
+<a class="whatsapp" href="https://wa.me/519XXXXXXXX" target="_blank">
+  <img src="assets/whatsapp.png">
+</a>
 
 <script>
+const tabCel=document.getElementById("tabCel");
+const tabDni=document.getElementById("tabDni");
+const celular=document.getElementById("celular");
+const dni=document.getElementById("dni");
+const resultado=document.getElementById("resultado");
+
 function showCel(){
-  tabCel.classList.add("active");
-  tabDni.classList.remove("active");
-  celular.style.display="block";
-  dni.style.display="none";
-  resultado.innerHTML="";
+ tabCel.classList.add("active");
+ tabDni.classList.remove("active");
+ celular.style.display="block";
+ dni.style.display="none";
+ resultado.innerHTML="";
 }
 
 function showDni(){
-  tabDni.classList.add("active");
-  tabCel.classList.remove("active");
-  dni.style.display="block";
-  celular.style.display="none";
-  resultado.innerHTML="";
+ tabDni.classList.add("active");
+ tabCel.classList.remove("active");
+ dni.style.display="block";
+ celular.style.display="none";
+ resultado.innerHTML="";
 }
+
 function verificarCel(){
-  const n = phone.value.trim();
-  if(!/^9\d{8}$/.test(n)){
-    resultado.innerHTML = "❌ Número inválido";
-    return;
-  }
-  resultado.innerHTML = "✅ Número válido<br>📱 Perú<br><small>Demo educativo</small>";
+ const n=document.getElementById("phone").value.trim();
+ if(!/^9\d{8}$/.test(n)){
+   resultado.innerHTML="❌ Número inválido";
+   return;
+ }
+ resultado.innerHTML="✅ Número válido<br>📌 Consulta disponible en OSIPTEL";
 }
 
 function verificarDni(){
-  const d = dniInput.value.trim();
-  if(!/^\d{8}$/.test(d)){
-    resultado.innerHTML = "❌ DNI inválido";
-    return;
-  }
-  resultado.innerHTML = "✅ DNI válido<br>🪪 RENIEC<br><small>Demo educativo</small>";
+ const d=document.getElementById("dniInput").value.trim();
+ if(!/^\d{8}$/.test(d)){
+   resultado.innerHTML="❌ DNI inválido";
+   return;
+ }
+ resultado.innerHTML="✅ DNI válido<br>📌 Consulta disponible en RENIEC";
 }
 </script>
-
 </body>
-</html>      
+  </html>
